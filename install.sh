@@ -53,7 +53,3 @@ systemctl restart filtreweb.service
 #Reinici del router
 service squid stop
 sudo reboot
-
-
-# url sslbump definitiva :https://support.kaspersky.com/KWTS/6.1/es-ES/166244.htm
-# i https://support.kaspersky.com/KWTS/6.1/es-ES/193662.htm
