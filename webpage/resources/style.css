@@ -1,0 +1,457 @@
+body{
+    margin: 0;
+    background-color: rgb(200, 200, 200);
+    font-family: 'Trebuchet MS', sans-serif;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    position: relative;
+}
+
+.content{
+    border: 0.3px solid black;
+    border-radius: 20px;
+    width: 60%;
+    background-color: white;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    min-height: 300px;
+    min-width: 900px;
+    padding: 20px 50px 20px 50px;
+    box-shadow: 1px 1px 10px black;
+}
+
+#header{
+    display: flex;
+    justify-content: left;
+    
+}
+
+#header > h1 {
+    padding-left: 10px;
+    margin: 0;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#versio {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    font-weight: bold;
+    text-align: right;
+    max-width: 20%;
+}
+
+input[type=checkbox] {
+    position: relative;
+    cursor: pointer;
+}
+input[type=checkbox]:before{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    border: 2px solid #555555;
+    border-radius: 3px;
+    background-color: white;
+}
+
+#http{
+    cursor: default;
+}
+
+input[type=checkbox]:checked:after {
+    content: "";
+    display: block;
+    width: 7px;
+    height: 18px;
+    border: solid green;
+    border-width: 0 6px 6px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: -5px;
+    left: 7px;
+}
+
+h4 {
+    margin: 0;
+}
+
+.warning {
+    width: 95%;
+    background-color: rgb(255, 250, 80);
+    border-radius: 5px;
+    border: 1px solid rgb(255, 205, 80);
+    padding: 10px;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.warning-extra {
+    width: 95%;
+    background-color: rgb(255, 118, 80);
+    border-radius: 5px;
+    border: 1px solid rgb(255, 98, 80);
+    padding: 10px;
+    position: relative;
+}
+
+#cert{
+    padding: 5px 10px 5px 10px;
+    background-color: rgb(255, 205, 80);
+    border: 1px solid rgb(241, 174, 4);
+    border-radius: 5px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    text-decoration:none;
+    color: black;
+}
+
+.atencio{
+    background-color: rgb(180, 255, 137);
+    padding: 0.1px;
+    border: 0.5px solid rgb(72, 119, 44);
+    border-radius: 5px;
+    font-weight: bolder;
+}
+
+h2{display:inline}
+
+.glow {
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.glow:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    background-size: 300%;
+    z-index: -1;
+    filter: blur(7px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow:active:after {
+    background: transparent;
+}
+
+.glow:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 10px;
+    top: 10px;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    25% { background-position: 300% 0; }
+    75% { background-position: -300% 0; }
+}
+
+@keyframes banish {
+    0% { opacity: 0.5; }
+    100% { opacity: 0; }
+}
+
+.glow-button {
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-button:before {
+    content: '';
+    background: linear-gradient(40deg, #ff0000, #ff7300, #ff0000, #ff7300, #ff0000, #ff7300);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-button:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgb(255, 205, 80);
+    border-radius: 10px;
+}
+
+#portSelector{
+    border: 0.3px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: flex;
+    align-items: left;
+    list-style-type: none; 
+    padding: 0;
+    width: 97%;
+    flex-wrap: wrap;
+}
+
+#portSelector > li{
+    margin: 10px;
+    display: flex;
+    justify-content: left;
+}
+
+#portSelector > li > input, #portSelector > li > select {
+    width: 60px;
+}
+
+#formAcces{
+    min-width: 200px;
+    width: 30%;
+    background-color: rgb(238, 238, 238);
+    border: 0.1px solid rgb(176, 176, 176);
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 30px;
+    position: relative;
+    padding: 20px 50px 20px 50px;
+    box-shadow: 1px 1px 5px rgb(159, 159, 159);
+    margin-bottom: 30px;
+}
+
+#formAcces > input, #formAcces >select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#formAcces > input[type=submit], .apcanv {
+    width: 100%;
+    background-color: #4c87af;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#formAcces > input[type=submit]:hover, .apcanv:hover {
+    background-color: #4571a0;
+}
+
+#block {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#block > p{
+    font-size: 70px;
+    margin-left: 20px;
+    color: #ff4646;
+}
+
+#identificarme {
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid black;
+    width: 260px;
+    height: 80px;
+    margin-top: 20px;
+    background-color: #4c87af;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+#identificarme:hover{
+    background-color: #4571a0;
+}
+
+.wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chpwd{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    margin-top: 10px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    position: relative;
+}
+
+#afegirPerfil, .eliminarPerfil{
+    cursor: pointer;
+    padding: 9px;
+}
+
+#afegirPerfil:hover, .eliminarPerfil:hover{
+    background-color: #ddd;
+}
+
+table {
+    width: 65%;
+    margin: auto;
+}
+
+table, th{
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+td > input[type=text]{
+    width: 100%;
+}
+
+td > input[type=checkbox]{
+    display: block;
+    margin: auto;
+}
+
+#afegirDomini{
+    cursor: pointer;
+    padding: 9px;
+    display: block;
+    margin: auto;
+}
+
+#afegirDomini:hover{
+    background-color: #ddd;
+}
+
+textarea{
+    display: block;
+    margin: auto;
+    width: 65%;
+    resize: none;
+}
+
+.vermell, .verd{
+    padding: 2px 5px 2px 5px;
+    border-radius: 2px;
+}
+
+.vermell{
+    background-color: #ff8787;
+}
+
+.verd{
+    background-color: #87ff9f;
+}
+
+.horari > tbody > tr > th {
+    border: none;
+    text-align: left;
+}
+
+.horari > tbody > tr > td {
+    cursor: pointer;
+}
+.horari > tbody{
+    padding: 5px;
+}
+.horari {
+    margin-bottom: 20px;
+}
+
+.tabcontent > h2{
+    text-align: center;
+    display: block;
+}
+
+.pinAcc{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eliminarPerfil{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.dia:hover{
+    cursor: pointer;
+}

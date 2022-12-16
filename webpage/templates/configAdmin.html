@@ -1,0 +1,19 @@
+{% if config.hasDefaultPassword() %}
+<div id="overlay" style="position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; background-color: black; opacity: 0.5; z-index: 0; animation: banish 1s linear;"></div>
+<details open style="z-index: 2; position:relative; box-shadow: 0px 0px 30px 10px white; background-color: white; border-radius: 10px;">
+<script>alert("Eps! Estas utilitzant la contrasenya per defecte, et recomanem canviar-la!");
+setTimeout(()=>{
+    document.getElementById("overlay").remove();
+},1000);
+</script>
+{% else %}
+<details>
+{% endif %}
+    <summary><h2>Configuració de l'administrador</h2></summary>
+    <br>
+    <h4>Canviar la contrasenya de l'administrador</h4>
+    <div class="chpwd">
+        <input type="password" id="pw1" placeholder="Nova contrasenya"><span style="margin-left: 10px;"></span>
+        <input type="password" id="pw2" placeholder="Repeteix la contrasenya">
+    </div>
+</details>

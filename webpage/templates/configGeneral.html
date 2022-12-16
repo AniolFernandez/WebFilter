@@ -1,0 +1,50 @@
+{% if config.hasDefaultPassword() %}
+  <details>
+{% else %}
+    <details open>
+{% endif %}
+    <summary><h2>Configuració general</h2></summary>
+    <ul>
+        <li>
+            <h4>Habilitar el filtre per pàgines web tradicionals <input type="checkbox" id="http" onclick="return false;" checked></h4>
+            <p><em>Aquest mode està activat per defecte, no cal cap configuració addicional! Tot el tràfic web tradicional (HTTP) serà analitzat i processat de forma transparent a l'usuari.</em></p>
+        </li>
+        <li>
+            <h4><img src="/warning.png" height="16" width="16"/> Habilitar el filtre per pàgines web segures <span class="glow"><input type="checkbox" id="https" {% if config.enableHttps %}checked{% endif %}></span></h4>
+            <p><em>Aquest mode permet analitzar i processar tot el tràfic web xifrat (HTTPs) de forma transparent a l'usuari.</em></p>
+            <p class="warning"><em><strong style="font-weight: bolder;">Avís</strong><br style="margin-top: 5px;">Activar aquest mode causarà un avís de seguretat a l'hora de navegar per la web. Per tal d'evitar l'avís cal instal·lar el certificat d'aquest servidor en cada usuari.</em><br><a id="cert" class="glow-button" href="/cert.der" download>Descarregar el certificat</a></p>
+        </li>
+        <li>
+            <h4>Configuració no transparent</h4>
+            <p><em><strong>Alternativament</strong>, si desitges filtrar el tràfic web xifrat (HTTPs) sense cap avís de seguretat i sense instal·lar cap certificat, pots optar a configurar cada usuari per a que es connecti utilitzant el filtre. Per a fer-ho, cal obrir el navegador web i activar la configuració proxy amb les següents opcions:</em></p>
+            <ul>
+                <li>
+                    Adreça IP: <span class="atencio">{{ IP }}</span>
+                </li>
+                <li>
+                    Port: <span class="atencio">5126</span>
+                </li>
+                <li><em>Cal marcar la casella "Utilitzar també la conexió proxy per a tràfic HTTPS"</em></li>
+            </ul>
+        </li>
+        <li style="margin-top: 10px;">
+            <details>
+                <summary><h4 style="display: inline;">Configuració avançada</h4></summary>
+                <p class="warning-extra"><em><strong style="font-weight: bolder;">Avís</strong><br style="margin-top: 5px;">La següent configuració deshabilitarà la connexió dels serveis que no estiguin permesos. Si vol activar-la vigili amb els requeriments de les aplicacions que requereixen de connexió.<br><strong>Una mala configuració pot provocar que aplicacions deixin de funcionar.</strong></em></p>
+                
+                <h4 style="color: rgb(255, 122, 122)"><img src="/warning.png" height="16" width="16"/> Deshabilitar serveis no llistats <input type="checkbox" id="disable" {% if config.blockPorts %}checked{% endif %}></span></h4>
+                <ul id="portSelector">
+                    <!-- 
+                    <li><input type="number" value="80" readonly><select><option selected>TCP</option></select></li>
+                    <li><input type="number" value="443" readonly><select><option selected>TCP</option></select></li>
+                    -->
+                    
+                    {% for portProto in config.allowedPorts %}
+                        <li><input type="number" value="{{ portProto.port }}"><select><option {% if portProto.tcp %}selected{% endif %}>TCP</option><option {% if not portProto.tcp %}selected{% endif %}>UDP</option></select><button onclick="eliminarPort(this)">X</button></li>
+                    {% endfor %}
+                    <li><button onclick="afegirPort(this)">Afegir més</button></li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</details>

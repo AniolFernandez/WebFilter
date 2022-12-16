@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>{{ titol }}</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/style.css">
+        <script src="/main.js"></script>
+        {% block header %}
+        {% endblock %}
+    </head>
+    <body>
+        {% if wrongPassword %}
+        <script>alert("Contrasenya incorrecte.");</script>
+        {% endif %}
+        <span id="versio">[UdG - CXMSI - 2022/23]<br><nobr>Aniol Fernàndez i Sergi Vos</nobr></span>
+        <div class="content">   
+            <div id="header"><img src="/logo.png" width="50" height="50"/><h1>{{ titol }}</h1></div>
+            <hr>
+            {% block contingut %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

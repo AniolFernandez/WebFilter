@@ -1,0 +1,14 @@
+{% extends "basic.html" %}
+{% block contingut %}
+    <span id="adminPass" style="display: none;">{{ password }}</span>
+    {% include 'configAdmin.html' %}
+    <hr>
+    {% include 'configGeneral.html' %}
+    <hr>
+    {% include 'configPolitiques.html' %}
+    <hr style="margin-bottom: 10px;">
+    <div style="display: flex; justify-content: center;">
+        <button class="apcanv" onclick="adminToJson()">Aplicar els canvis</button>
+    </div>
+    {% include 'loader.html' %}
+{% endblock %}

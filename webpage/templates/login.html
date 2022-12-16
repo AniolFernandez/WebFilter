@@ -1,0 +1,8 @@
+{% extends "basic.html" %}
+{% block contingut %}
+<form id="formAcces" action="/configuracio" method="POST">
+    <h4 style="margin-top: 20px;">Clau d'accés</h4>
+    <input type="password" name="password">
+    <input style="margin-top: 20px;" type="submit" value="Accedir">
+</form>
+{% endblock %}

@@ -1,0 +1,15 @@
+[Unit]
+Description=WebApp pel filtre web
+DefaultDependencies=no
+After=network.target
+
+[Service]
+Type=simple
+User=webapp_aniolsergi
+Group=webapp_aniolsergi
+ExecStart=/usr/bin/python3 /usr/local/webapp/app.py
+TimeoutStartSec=0
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,68 @@
+{% if config.hasDefaultPassword() %}
+  <details id="perfils">
+{% else %}
+  <details id="perfils" open>
+{% endif %}
+    <summary><h2>Polítiques d'accés</h2></summary>
+    <div class="tab">
+        {% for profile in config.profiles %}
+          <button {% if profile.id == "UNA" %}class="tablinks active"{% else %}class="tablinks"{% endif %} onclick='obrir(event, "{{ profile.id }}")'>{{ profile.name }}</button>
+        {% endfor %}
+        <img class="tablinks" id="afegirPerfil" src="/afegir.png" height="30px" onclick="afegiriPerfil(this)"></img>
+    </div>
+    {% for profile in config.profiles %}
+    <div id="{{ profile.id }}" class="tabcontent" {% if profile.id == "UNA" %}style="display: block;"{% endif %}>
+      <h2>{{ profile.name }}</h2>
+      {% if not profile.id == "UNA" %}
+        <img class="eliminarPerfil" src="/eliminar.png" height="30px" onclick="eliminarPerfil(this)"></img>
+        <div class="pinAcc">
+          <label>Clau accés:</label><span style="width: 10px;"></span><input type="text" value="{{ profile.accessKey }}" class="inputPin">
+        </div>
+      {% endif %}
+      <h3>Bloqueig per domini</h3>
+      <table class="taulaDominis">
+        <tr>
+          <th style="width: 0px; border: 0; padding: 0;"></th>
+          <th>Domini</th>
+          <th>Bloquejar subdominis</th>
+        </tr>
+        {% for domini in profile.unallowedDomains %}
+          <tr>
+            <td><button onclick="eliminarPort(this.parentNode)">X</button></td>
+            {% if domini.startswith('.') %}
+              <td><input type="text" identificador="nomDomini" value="{{ domini[1:] }}"></td>
+              <td><input type="checkbox" identificador="checkboxSubdominis" checked></td>
+            {% else %}
+              <td><input type="text" identificador="nomDomini" value="{{ domini }}"></td>
+              <td><input type="checkbox" identificador="checkboxSubdominis"></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+        <tr><td colspan="3"><img id="afegirDomini" src="/afegir.png" height="20px" onclick="afegirDomini(this)"></img></td></tr>
+      </table>
+      <h3>Bloqueig per contingut</h3>
+      <p><em>Atenció, aquesta opció només es efectiva a través de la configuració transparent.</em></p>
+      <p>Introdueix les paraules a bloquejar separades per espais:</p>
+      <textarea name="paraules" cols="40" rows="5" identificador="paraulesBloq">{{ profile.unallowedKeywords|join(' ') }}</textarea>
+      <h3>Bloqueig horari</h3>
+      <p>Marca en <span class="vermell">vermell</span> les hores en el que l'accés s'ha de bloquejar i deixa en <span class="verd">verd</span> les hores on es pot accedir.</p>
+      <table class="horari">
+          <tr>
+            <td></td>
+            {% for n in range(24) %}
+              <td><button onclick="canviarFC(this.parentNode.parentNode.parentNode, this.parentNode.cellIndex, false)" style="width: 100%; height: 16px;"></td>
+            {% endfor %}
+          </tr>
+          {% for dia in ["Dilluns","Dimarts","Dimecres","Dijous","Divendres","Dissabte","Diumenge"] %}
+          <tr>
+            <th>{{ dia }}</th>
+            {% for n in range(24) %}
+              <td {% if (dia + n|string) in profile.unallowedTime %}class="vermell"{% else %}class="verd"{% endif %} identificador="{{ dia + n|string}}" onclick="canviEstat(this)">{{ '%02d' % n }}</td>
+            {% endfor %}
+            <td><button onclick="canviarFC(this.parentNode.parentNode.parentNode, this.parentNode.parentNode.rowIndex, true)" style="width: 100%; height: 23px;"></button></td>
+          </tr>
+          {% endfor %}
+      </table>
+    </div>
+    {% endfor %}
+</details>

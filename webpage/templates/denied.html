@@ -1,0 +1,24 @@
+{% extends "basic.html" %}
+{% block contingut %}
+<div>
+    <strong>L'accés a la plana web que volies accedir ha estat bloquejat.</strong>
+    <div id="block"><img src="/denied.png" width="200" height="200" /><p>Accés denegat</p></div>
+    <p style="margin-top: 40px;">Si tens autorització per accedir a aquesta plana, identifica't.</p>
+    <div class="wrapper">
+        <button id="identificarme" onclick="identificarme(this)">Identificar-me</button>
+    </div>
+</div>
+<form id="formAcces" style="display: none;" action="/autenticar" method="POST">
+    <h4>Usuari</h4>
+    <select name="profileId">
+        <option value="admin">Administrador</option>
+        {% for user in users %}
+            <option value="{{ user.id }}">{{ user.name }}</option>
+        {% endfor %}
+    </select>
+    <h4 style="margin-top: 20px;">Clau d'accés</h4>
+    <input type="password" name="password">
+    <input type="hidden" name="url" value="{{ url }}">
+    <input style="margin-top: 20px;" type="submit" value="Identificar-me">
+</form>
+{% endblock %}

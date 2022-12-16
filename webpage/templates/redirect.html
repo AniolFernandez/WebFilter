@@ -1,0 +1,8 @@
+{% extends "basic.html" %}
+{% block header %}
+<meta http-equiv="refresh" content="5; URL={{ url }}" />
+{% endblock %}
+
+{% block contingut %}
+<p>Autenticat correctament, si en 5 segons no s'ha recarregat la pàgina, <a href="{{ url }}">fes click aqui</a>.</p>
+{% endblock %}

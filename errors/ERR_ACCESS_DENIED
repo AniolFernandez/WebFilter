@@ -1,0 +1,23 @@
+
+<html><head>
+<title>Accés denegat</title>
+<meta http-equiv="refresh" content="1; URL=http://192.168.0.1/denegat?url=%U" />
+<script>window.location.href="http://192.168.0.1/denegat?url=%U"</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<style>
+body {
+    margin: 0;            /* Reset default margin */
+}
+iframe {
+    display: block;       /* iframes are inline by default */
+    background: #000;
+    border: none;         /* Reset default border */
+    height: 100vh;        /* Viewport-relative units */
+    width: 100vw;
+}
+</style>
+<body>
+<iframe src="http://192.168.0.1/denegat?url=%U">
+</iframe>
+</body>
+</html>
