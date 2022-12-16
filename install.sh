@@ -1,8 +1,8 @@
 #!/bin/sh
 
-#Instalem squid i dependències de python
+#Instal·lem squid i dependències de python
 apt-get update -y
-apt-get install squid squid-openssl iptables-persistent apache2 python3-pip -y
+apt-get install squid squid-openssl apache2 python3-pip -y
 pip3 install flask==2.2.2
 
 #Configuració bàsica
@@ -44,12 +44,11 @@ chmod 644 /etc/squid/conf.d/*
 echo webapp_aniolsergi ALL = \(root\) NOPASSWD: /usr/local/webapp/configurar.py >> /etc/sudoers
 echo webapp_aniolsergi ALL = \(root\) NOPASSWD: /usr/local/webapp/reloadRestart.py >> /etc/sudoers
 
+#Stop squid
+service squid stop
+
 #Habilitem el servei per l'app
 cp -f $dir/filtreweb.service /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable filtreweb.service
 systemctl restart filtreweb.service
-
-#Reinici del router
-service squid stop
-sudo reboot
