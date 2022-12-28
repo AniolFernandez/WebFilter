@@ -2,7 +2,7 @@
 
 #Instal·lem squid i dependències de python
 apt-get update -y
-apt-get install squid squid-openssl apache2 python3-pip -y
+apt-get install squid-openssl apache2 python3-pip -y
 pip3 install flask==2.2.2
 
 #Configuració bàsica
