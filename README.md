@@ -7,5 +7,5 @@ La màquina on es vol realitzar la instal·lació ha de ser la porta d'enllaç d
 ## Instal·lació
 Executi la següent comanda per tal d'obtenir i instal·lar el programari.
 
-`sudo apt install zip -y; wget https://github.com/AniolFernandez/WebFilter/archive/refs/heads/main.zip; cd WebFilter-main; sudo sh install.sh`
+`sudo apt install zip -y; wget https://github.com/AniolFernandez/WebFilter/archive/refs/heads/main.zip; unzip main.zip; cd WebFilter-main; sudo sh install.sh`
 
