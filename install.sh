@@ -5,6 +5,9 @@ apt-get update -y
 apt-get install squid-openssl apache2 python3-pip -y
 pip3 install flask==2.2.2
 
+sudo service apache2 stop
+sudo systemctl disable apache2
+
 #Configuració bàsica
 config=/etc/squid
 dir=$(dirname "$0")
